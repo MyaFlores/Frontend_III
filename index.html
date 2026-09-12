@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico - Registro de Alumno</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="main-container">
+        <h1>Diagnostico</h1>
+
+        <div class="form-card">
+            <form id="registroForm">
+                
+                <!-- Campo Nombre -->
+                <div class="input-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" value="Carlos" required>
+                </div>
+
+                <!-- Campo Correo -->
+                <div class="input-group">
+                    <label for="correo">Correo:</label>
+                    <input type="email" id="correo" name="correo" placeholder="tu@correo.com" required>
+                </div>
+
+                <!-- Campo Contraseña (Borde Rojo en la imagen) -->
+                <div class="input-group error-style">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <!-- Campo Repetir Contraseña (Borde Rojo en la imagen) -->
+                <div class="input-group error-style">
+                    <label for="repetirPassword">Repetir Contraseña:</label>
+                    <input type="password" id="repetirPassword" name="repetirPassword" required>
+                </div>
+
+                <!-- Selección de Género -->
+                <div class="radio-group">
+                    <label class="radio-container">
+                        <input type="radio" name="genero" value="Hombre" checked>
+                        <span class="radio-label">Hombre</span>
+                    </label>
+                    <label class="radio-container">
+                        <input type="radio" name="genero" value="Mujer">
+                        <span class="radio-label">Mujer</span>
+                    </label>
+                </div>
+
+                <!-- Checkbox Términos -->
+                <div class="checkbox-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="terminos" required>
+                        <span class="checkmark"></span>
+                        Acepto los Términos y Condiciones
+                    </label>
+                </div>
+
+                <!-- Botón Enviar -->
+                <button type="submit" class="btn-enviar">Enviar</button>
+
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
