@@ -1,0 +1,145 @@
+:host {
+  display: block;
+  background-color: #eaf6fb;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.contenedor {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  color: #2c5f75;
+  font-family: 'Lucida Sans', sans-serif;
+}
+
+.contador {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #2c5f75;
+  margin-bottom: 20px;
+}
+
+.aviso-limite {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.tarjeta {
+  background-color: #cbe8f5;
+  border: 1px solid #8bbdd4;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 12px 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.tarjeta h2 {
+  margin: 0 0 8px 0;
+  color: #1d3d4d;
+}
+
+.tarjeta p {
+  margin: 4px 0;
+}
+
+/* Botones */
+button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 6px 6px 6px 0;
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+}
+
+.btn-inscribir {
+  background-color: #2e86ab;
+  color: white;
+}
+
+.btn-inscribir:hover:not([disabled]) {
+  background-color: #226f8f;
+}
+
+button[disabled] {
+  background-color: #bdbdbd;
+  color: #6b6b6b;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.btn-cancelar {
+  background-color: #d9534f;
+  color: white;
+}
+
+.btn-cancelar:hover {
+  background-color: #b83b37;
+}
+
+.confirmacion {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+/* Resumen */
+.resumen {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 2px dashed #8bbdd4;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.resumen h2 {
+  margin-top: 0;
+  color: #2c5f75;
+}
+
+.resumen ul {
+  padding-left: 20px;
+}
+
+.sin-seleccion {
+  color: #888;
+  font-style: italic;
+}
+
+.btn-cancelar-todo {
+  background-color: #6c3483;
+  color: white;
+  margin-top: 12px;
+}
+
+.btn-cancelar-todo:hover:not([disabled]) {
+  background-color: #512764;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .tarjeta {
+    padding: 12px;
+  }
+  button {
+    width: 100%;
+    margin: 4px 0;
+  }
+}
