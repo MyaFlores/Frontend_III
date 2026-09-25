@@ -1,0 +1,124 @@
+:host {
+  display: block;
+  background-color: #e8eff8;
+  font-family: "Poppins";
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.poppins-thin {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+
+.contenedor {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  color: #556983;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Buscador */
+.buscador {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.buscador label {
+  font-weight: bold;
+  color: #1f3a5f;
+}
+
+.buscador input {
+  padding: 10px 14px;
+  border: 2px solid #cfd8dc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.buscador input:focus {
+  border-color: #2e86ab;
+}
+
+/* Contador y mensajes */
+.contador {
+  font-weight: bold;
+  color: #2c5f75;
+  margin-bottom: 12px;
+}
+
+.sin-resultados {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Tarjetas */
+.tarjeta {
+  background-color: #ffffff;
+  border: 1px solid #dbe4eb;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.tarjeta h2 {
+  margin: 0 0 8px 0;
+  color: #1d3d4d;
+  font-size: 1.1rem;
+}
+
+.tarjeta p {
+  margin: 4px 0;
+  color: #37474f;
+}
+
+/* Etiqueta de disponibilidad */
+.etiqueta {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-left: 6px;
+}
+
+.etiqueta.disponible {
+  background-color: #b2ffc4;
+  color: #007d1d;
+}
+
+.etiqueta.agotado {
+  background-color: #ffb9c0;
+  color: #82000d;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .contenedor {
+    padding: 10px;
+  }
+
+  .tarjeta {
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+}
