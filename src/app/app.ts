@@ -1,11 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
+import { Registro } from './registro/registro';
 
 @Component({
-  imports: [],
   selector: 'app-root',
-  styleUrl: './app.css',
+  imports: [Registro],
   templateUrl: './app.html',
+  styleUrl: './app.css'
 })
-export class App {
-  protected readonly title = signal('registro');
-}
+export class App {}

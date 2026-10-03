@@ -1,0 +1,103 @@
+<div class="form-container">
+  <h2>Registro de usuario</h2>
+
+  <!-- El formulario NO usa (ngSubmit) porque el botón es un click directo -->
+  <form #formRegistro="ngForm" class="formulario">
+
+    <!-- Nombre completo -->
+    <div class="campo">
+      <label for="nombre">Nombre completo:</label>
+      <input
+        id="nombre"
+        type="text"
+        name="nombreCompleto"
+        [(ngModel)]="usuario.nombreCompleto"
+        placeholder="Ej. Juan Pérez López"
+        required
+      />
+    </div>
+
+    <!-- Correo -->
+    <div class="campo">
+      <label for="correo">Correo electrónico:</label>
+      <input
+        id="correo"
+        type="email"
+        name="correo"
+        [(ngModel)]="usuario.correo"
+        placeholder="ejemplo@correo.com"
+        required
+      />
+    </div>
+
+    <!-- Teléfono -->
+    <div class="campo">
+      <label for="telefono">Teléfono:</label>
+      <input
+        id="telefono"
+        type="tel"
+        name="telefono"
+        [(ngModel)]="usuario.telefono"
+        placeholder="10 dígitos"
+      />
+    </div>
+
+    <!-- Edad -->
+    <div class="campo">
+      <label for="edad">Edad:</label>
+      <input
+        id="edad"
+        type="number"
+        name="edad"
+        [(ngModel)]="usuario.edad"
+        placeholder="Ej. 20"
+        min="1"
+        max="120"
+      />
+    </div>
+
+    <!-- Contraseña -->
+    <div class="campo">
+      <label for="contrasena">Contraseña:</label>
+      <input
+        id="contrasena"
+        type="password"
+        name="contrasena"
+        [(ngModel)]="usuario.contrasena"
+        placeholder="Mínimo 6 caracteres"
+      />
+    </div>
+
+    <!-- Confirmación de contraseña -->
+    <div class="campo">
+      <label for="confirmar">Confirmación de contraseña:</label>
+      <input
+        id="confirmar"
+        type="password"
+        name="confirmarContrasena"
+        [(ngModel)]="usuario.confirmarContrasena"
+        placeholder="Repite la contraseña"
+      />
+    </div>
+
+    <!-- Botón Registrar -->
+    <button type="button" class="btn-registrar" (click)="registrar()">
+      Registrar
+    </button>
+  </form>
+
+  <!-- Resultado: se muestra solo después de presionar "Registrar" -->
+  @if (mostrarDatos) {
+    <div class="resultado">
+      <h3>Datos capturados</h3>
+      <ul>
+        <li><strong>Nombre:</strong> {{ usuario.nombreCompleto }}</li>
+        <li><strong>Correo:</strong> {{ usuario.correo }}</li>
+        <li><strong>Teléfono:</strong> {{ usuario.telefono }}</li>
+        <li><strong>Edad:</strong> {{ usuario.edad }}</li>
+        <li><strong>Contraseña:</strong> {{ usuario.contrasena }}</li>
+        <li><strong>Confirmación:</strong> {{ usuario.confirmarContrasena }}</li>
+      </ul>
+    </div>
+  }
+</div>
