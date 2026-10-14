@@ -1,10 +1,9 @@
 <div class="form-container">
   <h2>Registro de usuario</h2>
 
-  <!-- El formulario NO usa (ngSubmit) porque el botón es un click directo -->
-  <form #formRegistro="ngForm" class="formulario">
+  <form #formRegistro="ngForm" (ngSubmit)="registrar(formRegistro)" class="formulario" novalidate>
 
-    <!-- Nombre completo -->
+    <!-- ===== Nombre completo ===== -->
     <div class="campo">
       <label for="nombre">Nombre completo:</label>
       <input
@@ -12,12 +11,25 @@
         type="text"
         name="nombreCompleto"
         [(ngModel)]="usuario.nombreCompleto"
-        placeholder="Ej. Juan Pérez López"
+        #nombre="ngModel"
         required
+        minlength="3"
+        placeholder="Ej. Juan Pérez López"
+        [class.invalido]="nombre.invalid && nombre.touched"
+        [class.valido]="nombre.valid && nombre.touched"
       />
+
+      @if (nombre.touched && nombre.invalid) {
+        @if (nombre.errors?.['required']) {
+          <small class="error">El nombre es obligatorio.</small>
+        }
+        @if (nombre.errors?.['minlength']) {
+          <small class="error">El nombre debe tener al menos 3 caracteres.</small>
+        }
+      }
     </div>
 
-    <!-- Correo -->
+    <!-- ===== Correo ===== -->
     <div class="campo">
       <label for="correo">Correo electrónico:</label>
       <input
@@ -25,12 +37,25 @@
         type="email"
         name="correo"
         [(ngModel)]="usuario.correo"
-        placeholder="ejemplo@correo.com"
+        #correo="ngModel"
         required
+        email
+        placeholder="ejemplo@correo.com"
+        [class.invalido]="correo.invalid && correo.touched"
+        [class.valido]="correo.valid && correo.touched"
       />
+
+      @if (correo.touched && correo.invalid) {
+        @if (correo.errors?.['required']) {
+          <small class="error">El correo es obligatorio.</small>
+        }
+        @if (correo.errors?.['email']) {
+          <small class="error">Ingresa un correo válido.</small>
+        }
+      }
     </div>
 
-    <!-- Teléfono -->
+    <!-- ===== Teléfono ===== -->
     <div class="campo">
       <label for="telefono">Teléfono:</label>
       <input
@@ -38,11 +63,21 @@
         type="tel"
         name="telefono"
         [(ngModel)]="usuario.telefono"
+        #telefono="ngModel"
+        required
         placeholder="10 dígitos"
+        [class.invalido]="telefono.invalid && telefono.touched"
+        [class.valido]="telefono.valid && telefono.touched"
       />
+
+      @if (telefono.touched && telefono.invalid) {
+        @if (telefono.errors?.['required']) {
+          <small class="error">El teléfono es obligatorio.</small>
+        }
+      }
     </div>
 
-    <!-- Edad -->
+    <!-- ===== Edad ===== -->
     <div class="campo">
       <label for="edad">Edad:</label>
       <input
@@ -50,13 +85,25 @@
         type="number"
         name="edad"
         [(ngModel)]="usuario.edad"
+        #edad="ngModel"
+        required
+        min="18"
         placeholder="Ej. 20"
-        min="1"
-        max="120"
+        [class.invalido]="edad.invalid && edad.touched"
+        [class.valido]="edad.valid && edad.touched"
       />
+
+      @if (edad.touched && edad.invalid) {
+        @if (edad.errors?.['required']) {
+          <small class="error">La edad es obligatoria.</small>
+        }
+        @if (edad.errors?.['min']) {
+          <small class="error">Debes tener al menos 18 años.</small>
+        }
+      }
     </div>
 
-    <!-- Contraseña -->
+    <!-- ===== Contraseña ===== -->
     <div class="campo">
       <label for="contrasena">Contraseña:</label>
       <input
@@ -64,11 +111,25 @@
         type="password"
         name="contrasena"
         [(ngModel)]="usuario.contrasena"
+        #contrasena="ngModel"
+        required
+        minlength="6"
         placeholder="Mínimo 6 caracteres"
+        [class.invalido]="contrasena.invalid && contrasena.touched"
+        [class.valido]="contrasena.valid && contrasena.touched"
       />
+
+      @if (contrasena.touched && contrasena.invalid) {
+        @if (contrasena.errors?.['required']) {
+          <small class="error">La contraseña es obligatoria.</small>
+        }
+        @if (contrasena.errors?.['minlength']) {
+          <small class="error">La contraseña debe tener al menos 6 caracteres.</small>
+        }
+      }
     </div>
 
-    <!-- Confirmación de contraseña -->
+    <!-- ===== Confirmación de contraseña ===== -->
     <div class="campo">
       <label for="confirmar">Confirmación de contraseña:</label>
       <input
@@ -76,17 +137,29 @@
         type="password"
         name="confirmarContrasena"
         [(ngModel)]="usuario.confirmarContrasena"
+        #confirmar="ngModel"
+        required
         placeholder="Repite la contraseña"
+        [class.invalido]="confirmar.touched && usuario.confirmarContrasena !== usuario.contrasena"
+        [class.valido]="confirmar.touched && usuario.confirmarContrasena === usuario.contrasena && usuario.confirmarContrasena !== ''"
       />
+
+      @if (confirmar.touched && usuario.confirmarContrasena !== usuario.contrasena) {
+        <small class="error">Las contraseñas no coinciden.</small>
+      }
     </div>
 
-    <!-- Botón Registrar -->
-    <button type="button" class="btn-registrar" (click)="registrar()">
+    <!-- ===== Botón Registrar ===== -->
+    <button
+      type="submit"
+      class="btn-registrar"
+      [disabled]="formRegistro.invalid || usuario.contrasena !== usuario.confirmarContrasena">
       Registrar
     </button>
+
   </form>
 
-  <!-- Resultado: se muestra solo después de presionar "Registrar" -->
+  <!-- ===== Resultado ===== -->
   @if (mostrarDatos) {
     <div class="resultado">
       <h3>Datos capturados</h3>
@@ -96,7 +169,6 @@
         <li><strong>Teléfono:</strong> {{ usuario.telefono }}</li>
         <li><strong>Edad:</strong> {{ usuario.edad }}</li>
         <li><strong>Contraseña:</strong> {{ usuario.contrasena }}</li>
-        <li><strong>Confirmación:</strong> {{ usuario.confirmarContrasena }}</li>
       </ul>
     </div>
   }

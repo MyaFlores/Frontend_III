@@ -23,7 +23,7 @@ h2 {
 .campo {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
 }
 
 .campo label {
@@ -32,18 +32,39 @@ h2 {
   font-size: 0.95rem;
 }
 
+/* Estado base del input */
 .campo input {
   padding: 10px 12px;
   border: 2px solid #cfd8dc;
   border-radius: 8px;
   font-size: 1rem;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
 .campo input:focus {
   border-color: #2e86ab;
   box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.15);
+}
+
+/* ===== Estado: VÁLIDO ===== */
+.campo input.valido {
+  border-color: #4caf50;
+  background-color: #f1f8f4;
+}
+
+/* ===== Estado: INVÁLIDO ===== */
+.campo input.invalido {
+  border-color: #e53935;
+  background-color: #fdecea;
+}
+
+/* ===== Mensaje de error ===== */
+.error {
+  color: #e53935;
+  font-size: 0.82rem;
+  margin-top: 2px;
+  font-weight: 500;
 }
 
 /* Botón */
@@ -60,8 +81,15 @@ h2 {
   transition: background-color 0.2s;
 }
 
-.btn-registrar:hover {
+.btn-registrar:hover:not([disabled]) {
   background-color: #226f8f;
+}
+
+/* Botón deshabilitado */
+.btn-registrar[disabled] {
+  background-color: #b0bec5;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 /* Resultado */

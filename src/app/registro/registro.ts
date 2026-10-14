@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
@@ -8,7 +8,6 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './registro.css'
 })
 export class Registro {
-  // Objeto que guardará los datos capturados
   usuario = {
     nombreCompleto: '',
     correo: '',
@@ -18,10 +17,17 @@ export class Registro {
     confirmarContrasena: ''
   };
 
-  // Bandera para saber si el usuario ya presionó "Registrar"
   mostrarDatos = false;
 
-  registrar(): void {
+  // Método que se ejecuta al enviar el formulario (solo si es válido)
+  registrar(form: NgForm): void {
+    if (form.invalid) {
+      // Marca todos los campos como "touched" para que aparezcan los errores
+      Object.values(form.controls).forEach(control => {
+        control.markAsTouched();
+      });
+      return;
+    }
     this.mostrarDatos = true;
   }
 }
