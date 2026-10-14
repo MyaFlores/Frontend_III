@@ -1,0 +1,140 @@
+<div class="form-container">
+  <h2>Registro con Reactive Forms</h2>
+
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="formulario" novalidate>
+
+    <!-- ===== Nombre ===== -->
+    <div class="campo">
+      <label for="nombre">Nombre:</label>
+      <input
+        id="nombre"
+        type="text"
+        formControlName="nombre"
+        placeholder="Ej. Juan"
+        [class.invalido]="esInvalido('nombre')"
+        [class.valido]="f['nombre'].valid && f['nombre'].touched"
+      />
+
+      @if (esInvalido('nombre')) {
+        @if (f['nombre'].errors?.['required']) {
+          <small class="error">El nombre es obligatorio.</small>
+        }
+        @if (f['nombre'].errors?.['minlength']) {
+          <small class="error">El nombre debe tener al menos 3 caracteres.</small>
+        }
+      }
+    </div>
+
+    <!-- ===== Apellidos ===== -->
+    <div class="campo">
+      <label for="apellidos">Apellidos:</label>
+      <input
+        id="apellidos"
+        type="text"
+        formControlName="apellidos"
+        placeholder="Ej. Pérez López"
+        [class.invalido]="esInvalido('apellidos')"
+        [class.valido]="f['apellidos'].valid && f['apellidos'].touched"
+      />
+
+      @if (esInvalido('apellidos')) {
+        @if (f['apellidos'].errors?.['required']) {
+          <small class="error">Los apellidos son obligatorios.</small>
+        }
+        @if (f['apellidos'].errors?.['minlength']) {
+          <small class="error">Los apellidos deben tener al menos 3 caracteres.</small>
+        }
+      }
+    </div>
+
+    <!-- ===== Correo ===== -->
+    <div class="campo">
+      <label for="correo">Correo electrónico:</label>
+      <input
+        id="correo"
+        type="email"
+        formControlName="correo"
+        placeholder="ejemplo@correo.com"
+        [class.invalido]="esInvalido('correo')"
+        [class.valido]="f['correo'].valid && f['correo'].touched"
+      />
+
+      @if (esInvalido('correo')) {
+        @if (f['correo'].errors?.['required']) {
+          <small class="error">El correo es obligatorio.</small>
+        }
+        @if (f['correo'].errors?.['email']) {
+          <small class="error">Ingresa un correo válido.</small>
+        }
+      }
+    </div>
+
+    <!-- ===== Teléfono ===== -->
+    <div class="campo">
+      <label for="telefono">Teléfono:</label>
+      <input
+        id="telefono"
+        type="tel"
+        formControlName="telefono"
+        placeholder="10 dígitos"
+        [class.invalido]="esInvalido('telefono')"
+        [class.valido]="f['telefono'].valid && f['telefono'].touched"
+      />
+
+      @if (esInvalido('telefono')) {
+        @if (f['telefono'].errors?.['required']) {
+          <small class="error">El teléfono es obligatorio.</small>
+        }
+      }
+    </div>
+
+    <!-- ===== Contraseña ===== -->
+    <div class="campo">
+      <label for="contrasena">Contraseña:</label>
+      <input
+        id="contrasena"
+        type="password"
+        formControlName="contrasena"
+        placeholder="Mínimo 6 caracteres"
+        [class.invalido]="esInvalido('contrasena')"
+        [class.valido]="f['contrasena'].valid && f['contrasena'].touched"
+      />
+
+      @if (esInvalido('contrasena')) {
+        @if (f['contrasena'].errors?.['required']) {
+          <small class="error">La contraseña es obligatoria.</small>
+        }
+        @if (f['contrasena'].errors?.['minlength']) {
+          <small class="error">La contraseña debe tener al menos 6 caracteres.</small>
+        }
+      }
+    </div>
+
+    <!-- ===== Botón Enviar ===== -->
+    <button
+      type="submit"
+      class="btn-registrar"
+      [disabled]="formulario.invalid">
+      Registrar
+    </button>
+
+  </form>
+
+  <!-- ===== Datos registrados ===== -->
+  @if (datosRegistrados) {
+    <div class="resultado">
+      <h3>Datos registrados</h3>
+      <ul>
+        <li><strong>Nombre:</strong> {{ datosRegistrados.nombre }}</li>
+        <li><strong>Apellidos:</strong> {{ datosRegistrados.apellidos }}</li>
+        <li><strong>Correo:</strong> {{ datosRegistrados.correo }}</li>
+        <li><strong>Teléfono:</strong> {{ datosRegistrados.telefono }}</li>
+        <li><strong>Contraseña:</strong> {{ datosRegistrados.contrasena }}</li>
+      </ul>
+
+      <button type="button" class="btn-limpiar" (click)="limpiar()">
+        Limpiar formulario
+      </button>
+    </div>
+  }
+</div>
