@@ -1,0 +1,30 @@
+<div class="contenedor">
+  <h2>Lista de usuarios</h2>
+
+  <!-- Mensaje de carga -->
+  @if (cargando) {
+    <div class="cargando">
+      <p>⏳ Cargando usuarios...</p>
+    </div>
+  }
+
+  <!-- Mensaje de error -->
+  @if (error) {
+    <div class="error">
+      <p>❌ {{ error }}</p>
+    </div>
+  }
+
+  <!-- Lista de usuarios (solo cuando ya cargó y no hay error) -->
+  @if (!cargando && !error) {
+    <div class="lista-usuarios">
+      @for (usuario of usuarios; track usuario.id) {
+        <article class="tarjeta">
+          <p><strong>ID:</strong> {{ usuario.id }}</p>
+          <p><strong>Nombre:</strong> {{ usuario.name }}</p>
+          <p><strong>Correo:</strong> {{ usuario.email }}</p>
+        </article>
+      }
+    </div>
+  }
+</div>
