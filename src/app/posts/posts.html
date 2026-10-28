@@ -1,0 +1,98 @@
+<!-- src/app/posts/posts.html -->
+<div class="crud-container">
+  <h2>Administrador de Abarrotes</h2>
+
+  <!-- Mensajes globales -->
+  @if (mensajeExito) {
+    <div class="alerta exito">{{ mensajeExito }}</div>
+  }
+  @if (mensajeError) {
+    <div class="alerta error">{{ mensajeError }}</div>
+  }
+
+  <div class="layout">
+    <!-- FORMULARIO -->
+    <div class="formulario-seccion">
+      <h3>{{ editando ? 'Editar Producto' : 'Nuevo Producto' }}</h3>
+      
+      <form [formGroup]="productoForm" (ngSubmit)="guardarProducto()">
+        <div class="campo">
+          <label>Nombre:</label>
+          <input type="text" formControlName="nombre" placeholder="Ej. Leche">
+          @if (productoForm.get('nombre')?.invalid && productoForm.get('nombre')?.touched) {
+            <small class="error-text">El nombre es obligatorio (mín. 3 letras)</small>
+          }
+        </div>
+
+        <div class="campo">
+          <label>Precio ($):</label>
+          <input type="number" formControlName="precio" step="0.1">
+          @if (productoForm.get('precio')?.invalid && productoForm.get('precio')?.touched) {
+            <small class="error-text">Ingresa un precio mayor a 0</small>
+          }
+        </div>
+
+        <div class="campo">
+          <label>Existencias:</label>
+          <input type="number" formControlName="existencias">
+          @if (productoForm.get('existencias')?.invalid && productoForm.get('existencias')?.touched) {
+            <small class="error-text">Las existencias no pueden ser negativas</small>
+          }
+        </div>
+
+        <div class="campo">
+          <label>Categoría:</label>
+          <select formControlName="categoria">
+            <option value="">Seleccione...</option>
+            <option value="Lácteos">Lácteos</option>
+            <option value="Granos">Granos</option>
+            <option value="Bebidas">Bebidas</option>
+            <option value="Limpieza">Limpieza</option>
+          </select>
+          @if (productoForm.get('categoria')?.invalid && productoForm.get('categoria')?.touched) {
+            <small class="error-text">Selecciona una categoría</small>
+          }
+        </div>
+
+        <div class="acciones-form">
+          <button type="submit" [disabled]="productoForm.invalid" class="btn-guardar">
+            {{ editando ? 'Actualizar' : 'Agregar' }}
+          </button>
+          @if (editando) {
+            <button type="button" (click)="cancelarEdicion()" class="btn-cancelar">Cancelar</button>
+          }
+        </div>
+      </form>
+    </div>
+
+    <!-- TABLA DE PRODUCTOS -->
+    <div class="tabla-seccion">
+      <h3>Lista de Productos</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (prod of productos; track prod.id) {
+            <tr>
+              <td>{{ prod.id }}</td>
+              <td>{{ prod.nombre }}</td>
+              <td>{{ prod.precio }} MXN</td>
+              <td>{{ prod.existencias }}</td>
+              <td class="acciones">
+                <button class="btn-editar" (click)="editar(prod)">Editar</button>
+                <button class="btn-eliminar" (click)="eliminar(prod.id!)">Eliminar</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

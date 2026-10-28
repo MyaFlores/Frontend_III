@@ -1,0 +1,103 @@
+/* src/app/posts/posts.css */
+.crud-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #1f3a5f;
+}
+
+.layout {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.formulario-seccion, .tabla-seccion {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  flex: 1;
+  min-width: 500px;
+}
+
+.campo {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #37474f;
+}
+
+.campo input, .campo select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.campo input.ng-invalid.ng-touched, .campo select.ng-invalid.ng-touched {
+  border-color: #e53935;
+}
+
+.error-text {
+  color: #e53935;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.acciones-form {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 13px 3px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-guardar { background: #2e86ab; color: white; flex: 1; }
+.btn-cancelar { background: #b0bec5; color: #333; }
+
+table {
+  width: 100%;
+  border-collapse:collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th { background: #f5f7fa; }
+
+.btn-editar { background: #1243f3; color: white; margin-right: 5px; }
+.btn-eliminar { background: #e74c3c; color: white; }
+
+.alerta {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+.alerta.exito { background: #d4edda; color: #155724; }
+.alerta.error { background: #f8d7da; color: #721c24; }
